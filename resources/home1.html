@@ -1,0 +1,17 @@
+{% for box in boxes %}
+<div class="box box{{ forloop.counter }}">
+  <a href="">
+    <img src="">
+    <div class="overlay">
+      <div class="spacer"></div>
+      <div class="centered">
+        <h2>{{ box.headline }}</h2>
+        <p>{{ box.subcopy }}</p>
+        {% if box.tag1 %} <div class="shop">{{ box.tag1 }}</div>{% endif %}
+        {% if box.tag2 %} <div class="shop">{{ box.tag2 }}</div>{% endif %}
+        {% if box.tag3 %} <div class="shop">{{ box.tag3 }}</div>{% endif %}
+      </div>
+    </div>
+  </a>
+</div>
+{% endfor %}
