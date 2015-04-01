@@ -1,17 +1,40 @@
 {% for box in boxes %}
 <div class="box box{{ loop.index }}">
-  <a href="{{ box.link }}">
-    <img src="/urban/images/marketing/{{ six_date }}/w_gw{{ loop.index }}.jpg">
-    <div class="overlay">
-      <div class="spacer"></div>
-      <div class="centered">
-        <h2>{{ box.headline }}</h2>
-        <p>{{ box.subcopy }}</p>
-        {% if box.tag1 %}<div class="shop">{{ box.tag1 }}</div>{% endif %}
-        {% if box.tag2 %}<div class="shop">{{ box.tag2 }}</div>{% endif %}
-        {% if box.tag3 %}<div class="shop">{{ box.tag3 }}</div>{% endif %}
-      </div>
+    {% if '/' in box.cat1 %}
+    <a href="{{ box.cat1 }}?&cm_re={{ category_name }}-_-MODULE_C{{ loop.index }}-_-BLOG">
+    {% else %}
+    <a href="/urban/catalog/category.jsp?id={{ box.cat1 }}&cm_re={{ category_name }}-_-MODULE_C{{ loop.index }}-_-{{ box.cat1 }}">
+    {% endif %}
+        <img src="//www.urbanoutfitters.com/images/marketing/{{ formatted_date }}/{{ category_code }}_{{ loop.index }}.jpg">
+    </a>
+    <div class="shoptags">
+      <span class="shop first">
+          {% if '/' in box.cat1 %}
+            <a href="{{ box.cat1 }}?&cm_re={{ category_name }}-_-MODULE_C{{ loop.index }}-_-BLOG">{{ box.tag1 }}</a>
+          {% else %}
+            <a href="/urban/catalog/category.jsp?id={{ box.cat1 }}&cm_re={{ category_name }}-_-MODULE_C{{ loop.index }}-_-{{ box.cat1 }}">{{ box.tag1 }}</a>
+          {% endif %}
+      </span>
+      {% if box.tag2 %}
+      <span class="slash">&nbsp;/&nbsp;</span>
+      <span class="shop second">
+          {% if '/' in box.cat2 %}
+            <a href="{{ box.cat2 }}?&cm_re={{ category_name }}-_-MODULE_C{{ loop.index }}-_-BLOG">{{ box.tag2 }}</a>
+          {% else %}
+            <a href="/urban/catalog/category.jsp?id={{ box.cat2 }}&cm_re={{ category_name }}-_-MODULE_C{{ loop.index }}-_-{{ box.cat2 }}">{{ box.tag2 }}</a>
+          {% endif %}
+      </span>
+      {% endif %}
+      {% if box.tag3 %}
+      <span class="slash">&nbsp;/&nbsp;</span>
+      <span class="shop third">
+          {% if '/' in box.cat3 %}
+            <a href="{{ box.cat3 }}?&cm_re={{ category_name }}-_-MODULE_C{{ loop.index }}-_-BLOG">{{ box.tag3 }}
+          {% else %}</a>
+            <a href="/urban/catalog/category.jsp?id={{ box.cat3 }}&cm_re={{ category_name }}-_-MODULE_C{{ loop.index }}-_-{{ box.cat3 }}">{{ box.tag3 }}</a>
+          {% endif %} 
+      </span>
+      {% endif %}
     </div>
-  </a>
 </div>
 {% endfor %}
